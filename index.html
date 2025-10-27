@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene Fatrick Francisco - Education Technology Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --mc-blue: #001489;
+            --mc-gold: #FCB61A;
+            --neon-blue: #00d4ff;
+            --neon-gold: #ffd700;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #222222;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 20, 137, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 20, 137, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(252, 182, 26, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(252, 182, 26, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Neon Accent Lines */
+        .neon-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .neon-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--mc-gold), transparent);
+            height: 2px;
+            width: 100%;
+            animation: lineSlide 8s linear infinite;
+            opacity: 0.3;
+            box-shadow: 0 0 10px var(--mc-gold);
+        }
+
+        .neon-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .neon-line:nth-child(2) { top: 50%; animation-delay: 2s; background: linear-gradient(90deg, transparent, var(--mc-blue), transparent); box-shadow: 0 0 10px var(--mc-blue); }
+        .neon-line:nth-child(3) { top: 80%; animation-delay: 4s; }
+
+        @keyframes lineSlide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--mc-gold);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.6;
+            box-shadow: 0 0 10px var(--mc-gold);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 182, 26, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 40px;
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--mc-gold) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: #FCB61A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+           
+            box-shadow: 0 0 40px rgba(252, 182, 26, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, var(--mc-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            color: var(--mc-gold);
+            margin-bottom: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 30px 0 50px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--mc-gold), #ffcc00);
+            color: var(--mc-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(252, 182, 26, 0.5);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(252, 182, 26, 0.8);
+        }
+
+        .cta-button-secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--mc-gold);
+            color: var(--mc-gold);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 120px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--mc-gold), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .about-text strong {
+            color: var(--mc-gold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mc-blue), var(--mc-gold));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--mc-gold);
+            box-shadow: 0 20px 40px rgba(252, 182, 26, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--mc-gold);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px var(--mc-gold));
+        }
+
+        .stat-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Expertise Grid */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .expertise-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 182, 26, 0.1), transparent);
+            transition: 0.8s;
+        }
+
+        .expertise-card:hover::before {
+            left: 100%;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--mc-gold);
+            box-shadow: 0 25px 50px rgba(252, 182, 26, 0.3);
+        }
+
+        .expertise-icon {
+            font-size: 3.5rem;
+            color: var(--mc-gold);
+            margin-bottom: 25px;
+            display: inline-block;
+            filter: drop-shadow(0 0 15px var(--mc-gold));
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover .expertise-icon {
+            transform: scale(1.1) rotateY(360deg);
+        }
+
+        .expertise-card h3 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .expertise-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mc-blue), var(--mc-gold), var(--mc-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            border-color: var(--mc-gold);
+            box-shadow: 0 15px 40px rgba(252, 182, 26, 0.3);
+        }
+
+        .cert-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--mc-blue), var(--mc-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(252, 182, 26, 0.5);
+        }
+
+        .cert-card h4 {
+            color: var(--mc-gold);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .cert-card p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(252, 182, 26, 0.1), transparent);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scale(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--mc-gold);
+            box-shadow: 0 20px 50px rgba(252, 182, 26, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--mc-gold);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px var(--mc-gold));
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: var(--mc-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--mc-gold), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--mc-blue), var(--mc-gold));
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="neon-lines">
+        <div class="neon-line"></div>
+        <div class="neon-line"></div>
+        <div class="neon-line"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <div class="profile-image">
+                        <img src="gen.png" width="300px">
+                    </div>
+                </div>
+                <h1>Gene Fatrick Francisco</h1>
+                <p class="title">Education Technology Manager</p>
+                <p class="tagline">Architecting the Future of Learning Through Digital Innovation at Miriam College</p>
+                <div class="cta-group">
+                    <a href="#contact" class="cta-button">
+                        <i class="fas fa-calendar-alt"></i> Book a Meeting
+                    </a>
+                    <a href="#expertise" class="cta-button cta-button-secondary">
+                        <i class="fas fa-rocket"></i> Explore Expertise
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Transforming education through strategic technology implementation and human-centered design</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>As a visionary strategist and tactical thinker in educational technology, I bring over <strong>8 years of specialized experience</strong> in IT and EdTech, combining design thinking methodologies with deep technical expertise to transform the learning landscape at Miriam College.</p>
+                    
+                    <p>My approach is rooted in <strong>Human-Centered Design</strong>, where the student experience takes center stage. I believe that technology should serve as an enabler—empowering educators and learners to achieve their fullest potential through thoughtfully designed digital ecosystems.</p>
+
+                    <p>At Miriam College, I leverage my comprehensive background in UI/UX design, instructional design, and technical project management to drive strategic digital transformation initiatives that align with our institutional mission while preparing students for an increasingly digital future.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <i class="fas fa-brain stat-icon"></i>
+                        <div class="stat-title">Strategic Thinker</div>
+                        <div class="stat-desc">Visionary approach to EdTech implementation</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fas fa-lightbulb stat-icon"></i>
+                        <div class="stat-title">Innovation Leader</div>
+                        <div class="stat-desc">Driving digital transformation</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fas fa-chess stat-icon"></i>
+                        <div class="stat-title">Tactical Executor</div>
+                        <div class="stat-desc">From vision to successful deployment</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fas fa-users stat-icon"></i>
+                        <div class="stat-title">People-Centered</div>
+                        <div class="stat-desc">Empowering students and educators</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Areas of Expertise</h2>
+                <p class="section-subtitle">Comprehensive skills spanning design, development, and educational innovation</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-palette expertise-icon"></i>
+                    <h3>UI/UX Design for Education</h3>
+                    <p>Creating intuitive, engaging digital learning experiences that enhance student interaction and comprehension</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-chalkboard-teacher expertise-icon"></i>
+                    <h3>Learning & Instructional Design</h3>
+                    <p>Developing curriculum and learning materials that blend pedagogy with technology effectively</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-rocket expertise-icon"></i>
+                    <h3>EdTech Implementation</h3>
+                    <p>Leading technology adoption initiatives and empowering faculty through comprehensive training programs</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-tasks expertise-icon"></i>
+                    <h3>Technical Project Management</h3>
+                    <p>Orchestrating complex educational technology projects from conception to successful deployment</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-code expertise-icon"></i>
+                    <h3>Low-Code/No-Code Solutions</h3>
+                    <p>Building scalable educational applications using modern development platforms for rapid innovation</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-robot expertise-icon"></i>
+                    <h3>AI Solutions Implementation</h3>
+                    <p>Integrating artificial intelligence and machine learning to enhance educational outcomes</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-cloud expertise-icon"></i>
+                    <h3>Cloud Application Development</h3>
+                    <p>Designing and deploying scalable cloud-based solutions for educational institutions</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-server expertise-icon"></i>
+                    <h3>Web Administration</h3>
+                    <p>Managing and maintaining web infrastructure, CMS platforms, and ensuring optimal performance</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-laptop-code expertise-icon"></i>
+                    <h3>Software Engineering</h3>
+                    <p>Developing custom software solutions with modern programming practices and frameworks</p>
+                </div>
+                <div class="expertise-card glass-card">
+                    <i class="fas fa-chart-line expertise-icon"></i>
+                    <h3>Business Analysis</h3>
+                    <p>Analyzing organizational needs and translating requirements into effective technology solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">Professional credentials and continuous learning achievements</p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                    <h4>Certification Name 1</h4>
+                    <p>Issuing Organization</p>
+                </div>
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <h4>Certification Name 2</h4>
+                    <p>Issuing Organization</p>
+                </div>
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-medal"></i></div>
+                    <h4>Certification Name 3</h4>
+                    <p>Issuing Organization</p>
+                </div>
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-trophy"></i></div>
+                    <h4>Certification Name 4</h4>
+                    <p>Issuing Organization</p>
+                </div>
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-star"></i></div>
+                    <h4>Certification Name 5</h4>
+                    <p>Issuing Organization</p>
+                </div>
+                <div class="cert-card glass-card">
+                    <div class="cert-icon"><i class="fas fa-ribbon"></i></div>
+                    <h4>Certification Name 6</h4>
+                    <p>Issuing Organization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Choose your preferred method to reach out and collaborate</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card glass-card">
+                    <i class="fab fa-microsoft contact-icon"></i>
+                    <h3>Microsoft Teams</h3>
+                    <p>Add your Teams contact here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fas fa-building contact-icon"></i>
+                    <h3>Face-to-Face</h3>
+                    <p>ICTO Office, Miriam College<br>Katipunan Avenue, Loyola Heights<br>Quezon City, Metro Manila</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fab fa-facebook-messenger contact-icon"></i>
+                    <h3>Facebook Messenger</h3>
+                    <p>Add your Messenger link here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Add your LinkedIn profile link here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fab fa-viber contact-icon"></i>
+                    <h3>Viber</h3>
+                    <p>Add your Viber contact here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fab fa-telegram contact-icon"></i>
+                    <h3>Telegram</h3>
+                    <p>Add your Telegram handle here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Add your WhatsApp number here</p>
+                </div>
+                <div class="contact-card glass-card">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:gfrancisco@mc.edu.ph">gfrancisco@mc.edu.ph</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">Gene Fatrick Francisco</div>
+            <div class="footer-tagline">Empowering Education Through Technology</div>
+            <div class="footer-bottom">
+                &copy; 2025 Gene Fatrick Francisco | Education Technology Manager, Miriam College
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html
